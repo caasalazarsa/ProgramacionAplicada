@@ -8,5 +8,5 @@
 [node name="ball" parent="." instance=ExtResource( 1 )]
 position = Vector2( 385, 72 )
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
+[node name="player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 698, 114 )

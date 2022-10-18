@@ -6,7 +6,8 @@ var state =1
 var walk_time_start=0
 var walk_time_now=0
 var walk_flag=false
-var walk_velocity=20
+export var walk_velocity=100
+export var run_velocity=400
 
 var velocity=Vector2(0,0)
 # Declare member variables here. Examples:
@@ -29,7 +30,6 @@ func _process(delta):
 	match state:
 		1:
 			quieto()
-			
 		2:
 			caminar()
 		3:
@@ -64,11 +64,17 @@ func caminar():
 	pass
 	
 func correr():
+	
+	velocity.x=(int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left")))*run_velocity
+	
 	if(Input.is_action_pressed("ui_right")):
 		print("corro hacia la derecha")
 	if(Input.is_action_pressed("ui_left")):
 		print("corro hacia la izquierda")
 	if(Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right")):
 		state=1
+	if Input.is_action_just_released("ui_cancel"):
+		state=2	
+	
 	pass	
 	
