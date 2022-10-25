@@ -5,16 +5,16 @@ var state =1
 
 # en el caso de los kinematic body se debe añadir el efecto gravitatorio
 # ya que el juego demo es un plataformero
-var gravity=400
+var gravity=500
 
 # velocidades de movimiento horizontal jump_velocity se asigna de acuerdo al
 # estado desde el cual se hace el salto
-export var walk_velocity=100
-export var run_velocity=400
+export var walk_velocity=300
+export var run_velocity=600
 export var jump_velocity=0
 
 # velocidad de salto vertical
-export var jump_speed=600
+export var jump_speed=400
 
 # vector en el cual se suman todas las velocidades
 var velocity=Vector2(0,0)
@@ -22,6 +22,7 @@ var velocity=Vector2(0,0)
 # var a = 2
 # var b = "text"
 
+onready var animation_sprite = get_node("Animations")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,6 +50,7 @@ func _process(delta):
 		4:	
 			salto()
 			
+	_animate()
 	
 	pass
 	
@@ -57,6 +59,18 @@ func _physics_process(delta):
 	# el segundo parametro determina la normal de las superficies, es decir, la dirección en la
 	# perpendicular al suelo
 	move_and_slide(velocity,Vector2(0,-1))
+	
+	
+func _animate():
+	if state==1:
+		animation_sprite.play("Quieto")
+	if state==2 or 3:
+		if Input.is_action_pressed("ui_left"):
+			animation_sprite.play("Izquierda")
+		if Input.is_action_pressed("ui_right"):
+			animation_sprite.play("Derecha")
+		
+	
 
 	## ESTADO QUIETO
 	# si se oprime <- o -> el jugador pasara de quieto a caminata
@@ -89,10 +103,10 @@ func caminata():
 	moverse(walk_velocity)
 	
 	if(Input.is_action_pressed("ui_right")):
-		$Sprite.flip_h=false
+		#$Sprite.flip_h=false
 		print("camino hacia la derecha")
 	if(Input.is_action_pressed("ui_left")):
-		$Sprite.flip_h=true
+		#$Sprite.flip_h=true
 		print("camino hacia la izquierda")	
 	
 	if(!Input.is_action_pressed("ui_left") and !Input.is_action_pressed("ui_right")):
@@ -152,8 +166,14 @@ func salto():
 	# efecto gravitatorio en el personaje
 
 func gravity_effect(delta):
-	if velocity.y<400:
-		velocity.y=velocity.y+gravity*delta
+	
+	if is_on_floor():
+		velocity.y=gravity*delta
+	
+	else:
+		if velocity.y <1000:
+			velocity.y=velocity.y+gravity*delta
+	
 		
 	# función para moverse
 	# importante entender la lógica 
