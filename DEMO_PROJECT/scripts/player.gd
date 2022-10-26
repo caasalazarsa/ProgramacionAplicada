@@ -16,6 +16,8 @@ export var jump_velocity=0
 # velocidad de salto vertical
 export var jump_speed=400
 
+var startposition=Vector2(0,0)
+
 # vector en el cual se suman todas las velocidades
 var velocity=Vector2(0,0)
 # Declare member variables here. Examples:
@@ -27,7 +29,7 @@ onready var animation_sprite = get_node("Animations")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	
+	startposition=get_position()
 	
 	
 	pass # Replace with function body.
@@ -199,4 +201,10 @@ func moverse(input_velocity):
 	pass
 	
 
+
 	
+
+
+func _on_Pit_lose_life():
+	set_position(startposition)
+	pass # Replace with function body.
