@@ -14,7 +14,7 @@ current = true
 
 [node name="Animations" parent="." instance=ExtResource( 2 )]
 scale = Vector2( 2, 2 )
-frame = 3
+animation = "Quieto"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

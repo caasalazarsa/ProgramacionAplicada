@@ -27,10 +27,14 @@ animations = [ {
 "loop": true,
 "name": "Quieto",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Salto",
+"speed": 5.0
 } ]
 
 [node name="Animations" type="AnimatedSprite"]
 frames = SubResource( 1 )
-animation = "Derecha"
-frame = 2
+animation = "Salto"
 playing = true
