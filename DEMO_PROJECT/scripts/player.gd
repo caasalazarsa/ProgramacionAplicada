@@ -65,10 +65,15 @@ func _animate():
 	if state==1:
 		animation_sprite.play("Quieto")
 	if state==2 or 3:
+		if state==3:
+			animation_sprite.get_sprite_frames().set_animation_speed("Derecha", 10)
+		else:
+			animation_sprite.get_sprite_frames().set_animation_speed("walk", 5)
 		if Input.is_action_pressed("ui_left"):
-			animation_sprite.play("Izquierda")
+			animation_sprite.flip_h=true
 		if Input.is_action_pressed("ui_right"):
-			animation_sprite.play("Derecha")
+			animation_sprite.flip_h=false
+		animation_sprite.play("Derecha")
 		
 	
 
@@ -131,10 +136,10 @@ func sprint():
 	
 	moverse(run_velocity)
 	if(Input.is_action_pressed("ui_right")):
-		$Sprite.flip_h=false
+		#$Sprite.flip_h=false
 		print("corro hacia la derecha")
 	if(Input.is_action_pressed("ui_left")):
-		$Sprite.flip_h=true
+		#$Sprite.flip_h=true
 		print("corro hacia la izquierda")
 	if(!Input.is_action_pressed("ui_left") and !Input.is_action_pressed("ui_right")):
 		state=1

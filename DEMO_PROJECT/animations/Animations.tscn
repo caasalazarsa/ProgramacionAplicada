@@ -32,4 +32,5 @@ animations = [ {
 [node name="Animations" type="AnimatedSprite"]
 frames = SubResource( 1 )
 animation = "Derecha"
+frame = 2
 playing = true
