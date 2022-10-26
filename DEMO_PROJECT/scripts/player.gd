@@ -90,7 +90,7 @@ func _animate():
 	# las convenciones para las entradas están en 
 	# Proyecto>Configuración del proyecto>Mapa de entrada
 func quieto():
-	print("estoy quieto")
+	#print("estoy quieto")
 	velocity.x=0
 	if(Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right")):
 		state=2	
@@ -116,10 +116,12 @@ func caminata():
 	
 	if(Input.is_action_pressed("ui_right")):
 		#$Sprite.flip_h=false
-		print("camino hacia la derecha")
+		#print("camino hacia la derecha")
+		pass
 	if(Input.is_action_pressed("ui_left")):
 		#$Sprite.flip_h=true
-		print("camino hacia la izquierda")	
+		#print("camino hacia la izquierda")	
+		pass
 	
 	if(!Input.is_action_pressed("ui_left") and !Input.is_action_pressed("ui_right")):
 		state=1
@@ -144,10 +146,12 @@ func sprint():
 	moverse(run_velocity)
 	if(Input.is_action_pressed("ui_right")):
 		#$Sprite.flip_h=false
-		print("corro hacia la derecha")
+		#print("corro hacia la derecha")
+		pass
 	if(Input.is_action_pressed("ui_left")):
 		#$Sprite.flip_h=true
-		print("corro hacia la izquierda")
+		#print("corro hacia la izquierda")
+		pass
 	if(!Input.is_action_pressed("ui_left") and !Input.is_action_pressed("ui_right")):
 		state=1
 	if !Input.is_action_pressed("ui_cancel"):
@@ -170,7 +174,7 @@ func sprint():
 	
 func salto():
 	moverse(jump_velocity)
-	print("estoy en el aire")
+	#print("estoy en el aire")
 	if(is_on_floor()):
 		state=1
 	pass

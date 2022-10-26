@@ -6,7 +6,7 @@
 [sub_resource type="CapsuleShape2D" id=1]
 height = 12.0
 
-[node name="animated_player" type="KinematicBody2D"]
+[node name="animated_player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

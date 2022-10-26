@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://prefabs/ball.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/coin.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prefabs/platform.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prefabs/tiledplatform.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/Industrial Background.png" type="Texture" id=5]
 [ext_resource path="res://prefabs/another_player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/main.gd" type="Script" id=7]
 
 [node name="main" type="Node2D"]
+script = ExtResource( 7 )
 
 [node name="ball" parent="." instance=ExtResource( 1 )]
 position = Vector2( 385, 72 )
@@ -20,8 +23,29 @@ position = Vector2( 638, 186 )
 [node name="StaticBody2D" parent="." instance=ExtResource( 4 )]
 position = Vector2( 964, 278 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Background" type="Sprite" parent="."]
 z_index = -1
 texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 20000, 20000 )
+
+[node name="coin" parent="." instance=ExtResource( 2 )]
+position = Vector2( 572, 156 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Puntuacion" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 220.0
+margin_bottom = 60.0
+text = "Puntuación; 0"
+
+[node name="Vidas" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 240.0
+margin_top = 20.0
+margin_right = 440.0
+margin_bottom = 60.0
+text = "Vidas: 5"
+
+[connection signal="coin_collected" from="coin" to="." method="_on_coin_coin_collected"]
