@@ -38,3 +38,5 @@ func _on_Pit_lose_life():
 	lives_label.add_text(livestext+String(vidas))
 
 	pass # Replace with function body.
+
+

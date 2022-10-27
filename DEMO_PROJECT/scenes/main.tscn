@@ -18,20 +18,11 @@ position = Vector2( 385, 72 )
 [node name="animated_player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 703, 100 )
 
-[node name="platform" parent="." instance=ExtResource( 3 )]
-position = Vector2( 638, 186 )
-
-[node name="StaticBody2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 964, 278 )
-
 [node name="Background" type="Sprite" parent="."]
 z_index = -1
 texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 20000, 20000 )
-
-[node name="coin" parent="." instance=ExtResource( 2 )]
-position = Vector2( 572, 156 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -50,8 +41,56 @@ margin_bottom = 60.0
 text = "Vidas: 5"
 
 [node name="Pit" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1256, 375 )
+position = Vector2( 216, 536 )
+scale = Vector2( 10, 1 )
 
-[connection signal="coin_collected" from="coin" to="." method="_on_coin_coin_collected"]
+[node name="coins" type="Node2D" parent="."]
+
+[node name="coin" parent="coins" instance=ExtResource( 2 )]
+position = Vector2( 552, 144 )
+
+[node name="coin2" parent="coins" instance=ExtResource( 2 )]
+position = Vector2( 688, 152 )
+
+[node name="coin3" parent="coins" instance=ExtResource( 2 )]
+position = Vector2( 976, 272 )
+
+[node name="coin4" parent="coins" instance=ExtResource( 2 )]
+position = Vector2( 1128, 272 )
+
+[node name="coin5" parent="coins" instance=ExtResource( 2 )]
+position = Vector2( 1288, 272 )
+
+[node name="platforms" type="Node2D" parent="."]
+
+[node name="tiledplatform" parent="platforms" instance=ExtResource( 4 )]
+position = Vector2( 1048, 320 )
+
+[node name="tiledplatform2" parent="platforms" instance=ExtResource( 4 )]
+position = Vector2( 704, 384 )
+
+[node name="tiledplatform3" parent="platforms" instance=ExtResource( 4 )]
+position = Vector2( 328, 344 )
+
+[node name="tiledplatform4" parent="platforms" instance=ExtResource( 4 )]
+position = Vector2( 1384, 328 )
+
+[node name="tiledplatform5" parent="platforms" instance=ExtResource( 4 )]
+position = Vector2( 1568, 272 )
+
+[node name="platform" parent="platforms" instance=ExtResource( 3 )]
+position = Vector2( 638, 186 )
+
+[node name="platform2" parent="platforms" instance=ExtResource( 3 )]
+position = Vector2( 224, 248 )
+
+[node name="platform3" parent="platforms" instance=ExtResource( 3 )]
+position = Vector2( 40, 144 )
+
 [connection signal="lose_life" from="Pit" to="." method="_on_Pit_lose_life"]
 [connection signal="lose_life" from="Pit" to="animated_player" method="_on_Pit_lose_life"]
+[connection signal="coin_collected" from="coins/coin" to="." method="_on_coin_coin_collected"]
+[connection signal="coin_collected" from="coins/coin2" to="." method="_on_coin_coin_collected"]
+[connection signal="coin_collected" from="coins/coin3" to="." method="_on_coin_coin_collected"]
+[connection signal="coin_collected" from="coins/coin4" to="." method="_on_coin_coin_collected"]
+[connection signal="coin_collected" from="coins/coin5" to="." method="_on_coin_coin_collected"]
